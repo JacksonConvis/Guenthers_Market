@@ -8,16 +8,15 @@ import java.util.Scanner;
 public class Market {
 
 	public static void main(String[] args) {
-		double total = 0;
 		boolean cont = true;
 
 		Map<String, Double> food = new HashMap<>();
 		ArrayList<String> order = new ArrayList<String>();
 		ArrayList<Double> pricing = new ArrayList<Double>();
 
-		food.put("orange", 1.99);
+		food.put("raspberry", 1.99);
 		food.put("apples", 0.99);
-		food.put("pie", 4.99);
+		food.put("peanut", 4.99);
 		food.put("food", 2.99);
 		food.put("parmesan", 7.99);
 		food.put("pesto", 1.49);
@@ -37,22 +36,21 @@ public class Market {
 		}
 		System.out.println("\n");
 
-		Scanner scnr = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 
 		do {
 			System.out.println("Enter an item that you would like.");
-			String response = scnr.nextLine();
+			String response = scan.nextLine();
 
 			if (food.containsKey(response)) {
-				total += food.get(response);
 				order.add(response);
 				pricing.add(food.get(response));
 				System.out.println("Adding " + response + " to the cart at $" + food.get(response));
 				System.out.println("Would you like to order anything else (y/n)?");
 
-				String response2 = scnr.nextLine();
+				String yn = scan.nextLine();
 
-				if (response2.equalsIgnoreCase("n")) {
+				if (yn.equalsIgnoreCase("n")) {
 					cont = false;
 					System.out.println("Thanks for your order! You ordered: ");
 
@@ -72,8 +70,6 @@ public class Market {
 
 		System.out.println("The highest cost item is at index " + (highestCost(pricing)));
 		System.out.println("The lowest cost item is at index " + (lowestCost(pricing)));
-
-		scnr.close();
 
 	}
 
